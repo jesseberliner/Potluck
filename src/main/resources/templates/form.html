@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="base :: header"></th:block>
+    <title>Add a dish</title>
+</head>
+<body>
+<div th:replace="base :: nav"></div>
+<div class="container">
+    <form action="#" th:action="@{/add}" th:object="${dish}" method="POST" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}"/>
+        <h1>What I'm bringing</h1>
+
+        <label for="name">Your name</label>
+        <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Jane Smith"
+               autofocus="autofocus"/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        <br/>
+
+        <label for="dishName">I'm bringing...</label>
+        <input type="text" class="form-control" th:field="*{dishName}" id="dishName" placeholder="Potpourri"/>
+        <span th:if="${#fields.hasErrors('dishName')}" th:errors="*{dishName}"></span>
+        <br/>
+
+        <label for="image">Image</label>
+        <input type="file" name="file" class="form-control" id="image" />
+        <br/>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>  <button type="reset" class="btn btn-primary">Reset</button>
+    </form>
+</div>
+
+<div th:replace="base :: footer"></div>
+<div th:replace="base :: javascript"></div>
+</body>
+
+</html>
